@@ -1,8 +1,8 @@
-# 📅 St. Paul's University Event Hub
+# St. Paul's University Event Hub
 
 **Event Hub** is a web-based platform designed to centralize event management and discovery at St. Paul's University. It bridges the gap between student organizers and the student body, replacing scattered WhatsApp messages and physical notice boards with a single, reliable digital feed.
 
-## 🚀 The Problem
+## The Problem
 Currently, event information at St. Paul's is fragmented across notice boards, various social media groups, and word-of-mouth. This leads to:
 * **Low Awareness:** Students miss events simply because they didn't see the poster.
 * **Clutter:** Important announcements get buried in WhatsApp chats.
@@ -17,7 +17,7 @@ Event Hub provides a "Single Source of Truth" for campus activities.
 ## 🛠️ Technology Stack
 This project is built using the **MEN Stack** (MongoDB, Express, Node.js) with a native implementation for the frontend to ensure performance and simplicity.
 
-* **Frontend:** HTML5, CSS3, Vanilla JavaScript (No heavy frameworks).
+* **Frontend:** HTML5, CSS3, Vanilla JavaScript.
 * **Backend:** Node.js & Express.js (RESTful API).
 * **Database:** MongoDB (NoSQL database for flexible event data).
 
