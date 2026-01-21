@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Discover | SPU Event Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon">📅</span> SPU EventHub
+        </div>
+        <div class="nav-actions">
+            <a href="#" class="nav-link">Search</a>
+            <a href="#" class="nav-link">My Calendar</a>
+            <a href="#" class="btn-create">Create Event</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <header class="feed-header">
+            <h1>Discover Events</h1>
+            <div class="tags-scroller">
+                <button class="tag active">All</button>
+                <button class="tag">Academic</button>
+                <button class="tag">Sports</button>
+                <button class="tag">Tech</button>
+                <button class="tag">Arts</button>
+                <button class="tag">Religious</button>
+            </div>
+        </header>
+
+        <div class="event-grid" id="event-grid">
+            </div>
+
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
