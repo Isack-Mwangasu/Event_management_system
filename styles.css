@@ -172,3 +172,89 @@ body {
     cursor: pointer;
 }
 
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+.dashboard-header {
+    margin-bottom: 40px;
+}
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--spu-maroon);
+    margin-bottom: 5px;
+}
+.dashboard-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(128,0,0,0.1); /* Subtle divider line */
+    padding-bottom: 10px;
+}
+.section-title h2 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+}
+
+.view-all {
+    text-decoration: none;
+    color: var(--spu-maroon);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+
+.popular-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px; /* Space before categories */
+}
+.pop-card {
+    display: flex; /* Image Left, Text Right */
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.pop-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.pop-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+.pop-details .date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--spu-maroon);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+.pop-details h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+.pop-details p {
+    font-size: 0.85rem;
+    color: #666;
+}
