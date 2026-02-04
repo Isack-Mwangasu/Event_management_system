@@ -10,10 +10,11 @@
     --spu-beige: #f6f0be;
     --text-white: #ffffff;
     --text-dark: #333333;
+    --back_ground:#f8f9fa;
 }
 
 body {
-    background-color: var(--spu-beige);
+    background-color: var(--back_ground);
     color: var(--text-dark);
 }
 
