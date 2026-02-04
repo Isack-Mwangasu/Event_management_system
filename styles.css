@@ -2,44 +2,63 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif; /* Using the font we just imported */
+    font-family: 'Inter', sans-serif;
 }
 
 :root {
-    --bg-dark: #0f0f0f;      /* The dark background from Luma */
-    --text-white: #ffffff;
-    --text-gray: #a1a1a1;    /* For inactive links */
-    --accent-gray: #262626;  /* For borders/buttons */
-    --spu-maroon: #831C26;   /* Keeping SPU identity subtle */
+    --spu-maroon: #800000;    /* Primary Brand Color */
+    --spu-beige: #f6f0be;     /* Primary Background Color */
+    
+    /* Text Colors */
+    --text-white: #ffffff;    /* For text on Maroon background */
+    --text-dark: #333333;     /* For text on Beige background */
+    
+    /* UI Accents */
+    --nav-border: rgba(255, 255, 255, 0.1); /* Subtle divider */
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-white);
+    background-color: var(--spu-beige); /* The Beige Background */
+    color: var(--text-dark);
 }
 
-.luma-nav {
+
+.main-nav {
     display: flex;
-    justify-content: space-between; /* Pushes Left and Right apart */
+    justify-content: space-between;
     align-items: center;
-    padding: 18px 40px;
-    border-bottom: 1px solid var(--accent-gray); /* Subtle separator line */
-    background-color: var(--bg-dark);
+    padding: 15px 40px;
+    background-color: var(--spu-maroon); /* MAROON HEADER */
+    color: var(--text-white);
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Adds a nice shadow */
 }
 
-/* --- 3. LEFT SIDE (Logo + Links) --- */
 .nav-left {
     display: flex;
     align-items: center;
-    gap: 40px; /* Space between Star and Links */
+    gap: 40px;
+}
+
+.nav-logo {
+    text-decoration: none;
+    display: flex; 
+    align-items: center;
+    gap: 10px;
 }
 
 .nav-logo i {
     font-size: 1.5rem;
-    color: var(--text-white); /* The White Star */
+    color: var(--spu-beige); 
+}
+
+.nav-logo span {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-white);
+    letter-spacing: 0.5px;
 }
 
 .nav-links {
@@ -50,10 +69,10 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-gray); /* Grey by default */
+    color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
     font-size: 0.95rem;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.3s;
 }
 
 .nav-links a:hover {
@@ -61,10 +80,12 @@ body {
 }
 
 .nav-links a.active {
-    color: var(--text-white); /* Bright white for "Discover" */
+    color: var(--text-white);
+    border-bottom: 2px solid var(--spu-beige); /* Underline active link */
+    padding-bottom: 4px;
 }
 
-/* --- 4. RIGHT SIDE (Time, Button, Icons) --- */
+
 .nav-right {
     display: flex;
     align-items: center;
@@ -72,27 +93,32 @@ body {
 }
 
 .nav-time {
-    color: var(--text-gray);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.85rem;
     font-weight: 500;
 }
 
 .nav-create-btn {
     text-decoration: none;
-    color: var(--text-white);
+    background-color: var(--spu-beige); /* Beige Button */
+    color: var(--spu-maroon); /* Maroon Text */
+    padding: 8px 20px;
+    border-radius: 20px;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
+    transition: transform 0.2s;
 }
 
 .nav-create-btn:hover {
-    text-decoration: underline;
+    transform: scale(1.05); /* Slight pop effect */
+    background-color: white;
 }
 
 .nav-icons {
     display: flex;
     gap: 20px;
     align-items: center;
-    border-left: 1px solid var(--accent-gray); /* The little divider line */
+    border-left: 1px solid rgba(255,255,255,0.2);
     padding-left: 20px;
 }
 
@@ -109,8 +135,8 @@ body {
 }
 
 .user-profile img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%; /* Makes it a perfect circle */
-    border: 1px solid var(--accent-gray);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--spu-beige); /* Beige border around profile */
 }
