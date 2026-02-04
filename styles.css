@@ -353,3 +353,129 @@ body {
     justify-content: center;
 }
 .btn-chat:hover { transform: scale(1.1) rotate(5deg); }
+
+
+.spu-footer {
+    background-color: var(--spu-maroon);
+    color: var(--text-white);
+    padding-top: 60px;
+    margin-top: 80px; /* Separates footer from the rest of the page */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 60px 40px;
+    display: grid;
+    /* Responsive Grid: 4 columns on desktop */
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr; 
+    gap: 40px;
+}
+
+/* Col 1: Logo & Text */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.footer-logo img {
+    height: 40px;
+    width: auto;
+}
+.footer-logo span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--spu-beige); /* Gold/Beige Text */
+}
+.footer-tagline {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Social Icons */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+.footer-socials a {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+    text-decoration: none;
+    transition: 0.3s;
+}
+.footer-socials a:hover {
+    background-color: var(--spu-beige);
+    color: var(--spu-maroon);
+}
+
+/* Headings */
+.footer-col h4 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--spu-beige); /* Gold Headings */
+    position: relative;
+    padding-bottom: 10px;
+}
+/* The little line under headings */
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: rgba(255,255,255,0.3);
+}
+
+/* Links */
+.footer-col ul {
+    list-style: none;
+}
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+.footer-col ul li a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.footer-col ul li a:hover {
+    color: var(--spu-beige);
+    padding-left: 5px; /* Tiny slide effect */
+}
+
+/* Contact List Icons */
+.contact-list li {
+    display: flex;
+    gap: 10px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    align-items: flex-start;
+}
+.contact-list i {
+    color: var(--spu-beige);
+    margin-top: 4px;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    background-color: rgba(0,0,0,0.2); /* Slightly darker maroon */
+    padding: 20px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+}
