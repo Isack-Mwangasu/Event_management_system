@@ -398,7 +398,12 @@ body {
 /* Social Icons */
 .footer-socials {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;       /* Allows icons to drop to the next line */
+    justify-content: center; /* Centers the icons in the rows */
+    gap: 12px;             /* Slightly tighter spacing */
+    max-width: 200px;      /* This width forces the 4-and-3 layout */
+    margin-top: 20px;      /* Adds space above the icons */
+
 }
 .footer-socials a {
     width: 35px;
@@ -415,6 +420,7 @@ body {
 .footer-socials a:hover {
     background-color: var(--spu-beige);
     color: var(--spu-maroon);
+    transform: translateY(-3px);
 }
 
 /* Headings */
