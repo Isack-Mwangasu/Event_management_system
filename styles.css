@@ -562,3 +562,37 @@ body {
     justify-content: center;
     margin-top: 20px;
 }
+
+.tags-scroller {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    justify-content: center; /* Centers them */
+}
+
+.filter-tag {
+    background: transparent;
+    border: 1px solid rgba(128, 0, 0, 0.3); /* Light Maroon border */
+    padding: 8px 24px;       /* Adds the "pill" shape width */
+    border-radius: 30px;     /* Rounds the corners */
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--spu-maroon);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.filter-tag:hover {
+    background-color: rgba(128, 0, 0, 0.05); /* Light tint on hover */
+    transform: translateY(-2px);
+}
+
+/* The Active "All" Button */
+.filter-tag.active {
+    background-color: var(--spu-maroon);
+    color: white;
+    border-color: var(--spu-maroon);
+    box-shadow: 0 4px 10px rgba(128, 0, 0, 0.3);
+}
