@@ -4,41 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discover | SPU Event Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-            <span class="logo-icon">📅</span> SPU EventHub
+    <nav class="luma-nav">
+        
+        <div class="nav-left">
+            <a href="#" class="nav-logo">
+                <i class="fa-solid fa-star"></i>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Calendars</a></li>
+                <li><a href="#" class="active">Discover</a></li> </ul>
         </div>
-        <div class="nav-actions">
-            <a href="#" class="nav-link">Search</a>
-            <a href="#" class="nav-link">My Calendar</a>
-            <a href="#" class="btn-create">Create Event</a>
+
+        <div class="nav-right">
+            <span class="nav-time">12:47 GMT+3</span>
+            
+            <a href="#" class="nav-create-btn">Create Event</a>
+            
+            <div class="nav-icons">
+                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a> <a href="#"><i class="fa-regular fa-bell"></i></a>          <a href="#" class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Isack+M&background=random" alt="Profile">
+                </a>
+            </div>
         </div>
+
     </nav>
 
-    <main class="container">
-        
-        <header class="feed-header">
-            <h1>Discover Events</h1>
-            <div class="tags-scroller">
-                <button class="tag active">All</button>
-                <button class="tag">Academic</button>
-                <button class="tag">Sports</button>
-                <button class="tag">Tech</button>
-                <button class="tag">Arts</button>
-                <button class="tag">Religious</button>
-            </div>
-        </header>
-
-        <div class="event-grid" id="event-grid">
-            </div>
-
-    </main>
+    <main>
+        </main>
 
     <script src="script.js"></script>
 </body>
