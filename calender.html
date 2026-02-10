@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>St Paul's University | Event Hub</title>
+	<link rel="icon" href="img/spu_logo.png">
+	<link rel="stylesheet" href="styles.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+	<style>
+		body, body * {
+			font-family: "Source Sans 3", sans-serif !important;
+		}
+
+		h1, h2, h3, .month-title {
+			font-family: "Space Grotesk", sans-serif !important;
+		}
+
+		.calendar-page {
+			padding: 30px 24px 10px;
+			background: radial-gradient(circle at 20% 0%, rgba(128, 0, 0, 0.12), transparent 45%),
+						radial-gradient(circle at 90% 20%, rgba(246, 240, 190, 0.5), transparent 40%),
+						var(--back_ground);
+			min-height: 70vh;
+		}
+
+		.calendar-hero {
+			max-width: 1200px;
+			margin: 0 auto 28px;
+			padding: 26px 28px;
+			border-radius: 18px;
+			background: linear-gradient(135deg, rgba(128, 0, 0, 0.08), rgba(128, 0, 0, 0.02));
+			border: 1px solid rgba(128, 0, 0, 0.15);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 20px;
+			animation: fadeUp 0.7s ease both;
+		}
+
+		.calendar-hero h1 {
+			font-size: 2.2rem;
+			color: var(--spu-maroon);
+			margin-bottom: 6px;
+		}
+
+		.calendar-hero p {
+			color: #5a5a5a;
+			max-width: 460px;
+		}
+
+		.calendar-actions {
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+		}
+
+		.btn-outline,
+		.btn-solid {
+			border-radius: 999px;
+			padding: 10px 18px;
+			font-weight: 600;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.btn-outline {
+			border: 1px solid rgba(128, 0, 0, 0.4);
+			color: var(--spu-maroon);
+			background: #fff;
+		}
+
+		.btn-solid {
+			background: var(--spu-maroon);
+			color: #fff;
+			border: 1px solid var(--spu-maroon);
+			box-shadow: 0 8px 18px rgba(128, 0, 0, 0.25);
+		}
+
+		.btn-outline:hover,
+		.btn-solid:hover {
+			transform: translateY(-2px);
+		}
+
+		.calendar-layout {
+			max-width: 1200px;
+			margin: 0 auto 40px;
+			display: grid;
+			grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
+			gap: 22px;
+		}
+
+		.calendar-card {
+			background: #fff;
+			border-radius: 16px;
+			padding: 24px;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+			animation: fadeUp 0.8s ease both;
+		}
+
+		.month-bar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 16px;
+		}
+
+		.month-title {
+			font-size: 1.5rem;
+			color: var(--text-dark);
+		}
+
+		.month-switch {
+			display: flex;
+			gap: 10px;
+		}
+
+		.month-switch button {
+			width: 38px;
+			height: 38px;
+			border-radius: 12px;
+			border: 1px solid rgba(128, 0, 0, 0.2);
+			background: #fff;
+			color: var(--spu-maroon);
+			cursor: pointer;
+		}
+
+		.calendar-weekdays,
+		.calendar-grid {
+			display: grid;
+			grid-template-columns: repeat(7, minmax(0, 1fr));
+			gap: 10px;
+		}
+
+		.calendar-weekdays span {
+			font-weight: 600;
+			text-transform: uppercase;
+			font-size: 0.75rem;
+			color: #7a7a7a;
+			letter-spacing: 0.08em;
+		}
+
+		.day-cell {
+			background: #fbfbfb;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+			border-radius: 12px;
+			padding: 10px;
+			min-height: 90px;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.day-number {
+			font-weight: 700;
+			color: #222;
+			font-size: 0.9rem;
+		}
+
+		.day-cell.is-today {
+			border-color: rgba(128, 0, 0, 0.5);
+			box-shadow: inset 0 0 0 2px rgba(128, 0, 0, 0.12);
+			background: #fff5f5;
+		}
+
+		.event-pill {
+			font-size: 0.7rem;
+			padding: 4px 8px;
+			border-radius: 999px;
+			background: rgba(128, 0, 0, 0.08);
+			color: var(--spu-maroon);
+			font-weight: 600;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+
+		.event-pill.alt {
+			background: rgba(34, 139, 34, 0.12);
+			color: #1f6f1f;
+		}
+
+		.calendar-side {
+			display: flex;
+			flex-direction: column;
+			gap: 18px;
+		}
+
+		.side-card {
+			background: #fff;
+			border-radius: 16px;
+			padding: 20px;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+			animation: fadeUp 0.9s ease both;
+		}
+
+		.side-card h3 {
+			margin-bottom: 12px;
+			color: var(--text-dark);
+		}
+
+		.agenda-item {
+			display: flex;
+			gap: 12px;
+			padding: 12px 0;
+			border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+		}
+
+		.agenda-item:last-child {
+			border-bottom: none;
+		}
+
+		.agenda-time {
+			font-weight: 700;
+			color: var(--spu-maroon);
+			min-width: 70px;
+		}
+
+		.agenda-meta h4 {
+			font-size: 0.95rem;
+			margin-bottom: 4px;
+		}
+
+		.agenda-meta span {
+			font-size: 0.8rem;
+			color: #7a7a7a;
+		}
+
+		.legend {
+			display: grid;
+			gap: 10px;
+		}
+
+		.legend-item {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 0.9rem;
+		}
+
+		.legend-dot {
+			width: 10px;
+			height: 10px;
+			border-radius: 999px;
+			background: rgba(128, 0, 0, 0.6);
+		}
+
+		.legend-dot.alt {
+			background: rgba(34, 139, 34, 0.7);
+		}
+
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(12px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 980px) {
+			.calendar-layout {
+				grid-template-columns: 1fr;
+			}
+
+			.calendar-hero {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.calendar-actions {
+				width: 100%;
+				justify-content: flex-start;
+			}
+		}
+
+		@media (max-width: 720px) {
+			.calendar-weekdays,
+			.calendar-grid {
+				gap: 6px;
+			}
+
+			.day-cell {
+				min-height: 78px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<nav class="main-nav">
+		<div class="nav-left">
+			<a href="#" class="nav-logo">
+				<img src="img/spu_logo.png" alt="spu_logo Logo" class="spu-crest">
+				<div class="logo-text">
+					<span>St Paul's University</span>
+					<span class="hub-text">EventHub</span>
+				</div>
+			</a>
+		</div>
+
+		<ul class="nav-links">
+			<li><a href="events.html">Events</a></li>
+			<li><a href="calender.html" class="active">Calendars</a></li>
+			<li><a href="index.html">Discover</a></li>
+		</ul>
+
+		<div class="nav-right">
+			<span class="nav-time">12:47 GMT+3</span>
+			<a href="#" class="nav-create-btn">Create Event</a>
+			<div class="nav-icons">
+				<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+				<a href="#"><i class="fa-regular fa-bell"></i></a>
+				<a href="#" class="user-profile">
+					<img src="https://ui-avatars.com/api/?name=Isack+M&background=random" alt="Profile">
+				</a>
+			</div>
+		</div>
+	</nav>
+
+	<main class="calendar-page">
+		<section class="calendar-hero">
+			<div>
+				<h1>Campus Calendar</h1>
+				<p>Plan your semester with the events that shape St Paul's University life. February is packed with socials, sports, and career moments.</p>
+			</div>
+			<div class="calendar-actions">
+				<a class="btn-outline" href="#"><i class="fa-regular fa-calendar"></i> Today</a>
+				<a class="btn-solid" href="#"><i class="fa-solid fa-plus"></i> Add to Calendar</a>
+			</div>
+		</section>
+
+		<section class="calendar-layout">
+			<div class="calendar-card">
+				<div class="month-bar">
+					<div class="month-title">February 2026</div>
+					<div class="month-switch">
+						<button aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i></button>
+						<button aria-label="Next month"><i class="fa-solid fa-chevron-right"></i></button>
+					</div>
+				</div>
+
+				<div class="calendar-weekdays">
+					<span>Sun</span>
+					<span>Mon</span>
+					<span>Tue</span>
+					<span>Wed</span>
+					<span>Thu</span>
+					<span>Fri</span>
+					<span>Sat</span>
+				</div>
+
+				<div class="calendar-grid">
+					<div class="day-cell">
+						<span class="day-number">1</span>
+						<span class="event-pill">Orientation Week</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">2</span>
+						<span class="event-pill alt">Library Tour</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">3</span>
+						<span class="event-pill">Film Night</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">4</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">5</span>
+						<span class="event-pill">Career Clinic</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">6</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">7</span>
+						<span class="event-pill alt">Rugby Tryouts</span>
+					</div>
+
+					<div class="day-cell">
+						<span class="day-number">8</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">9</span>
+						<span class="event-pill">Health Week Launch</span>
+					</div>
+					<div class="day-cell is-today">
+						<span class="day-number">10</span>
+						<span class="event-pill">Freshers' Night</span>
+						<span class="event-pill alt">Faculty Mixer</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">11</span>
+						<span class="event-pill">Tech Talk</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">12</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">13</span>
+						<span class="event-pill alt">Inter-Varsity Rugby</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">14</span>
+						<span class="event-pill">Cultural Night</span>
+					</div>
+
+					<div class="day-cell">
+						<span class="day-number">15</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">16</span>
+						<span class="event-pill">Chapel Worship</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">17</span>
+						<span class="event-pill">Hackathon</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">18</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">19</span>
+						<span class="event-pill alt">Wellness Drive</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">20</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">21</span>
+						<span class="event-pill">Alumni Forum</span>
+					</div>
+
+					<div class="day-cell">
+						<span class="day-number">22</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">23</span>
+						<span class="event-pill">Debate Finals</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">24</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">25</span>
+						<span class="event-pill alt">Career Fair</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">26</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">27</span>
+						<span class="event-pill">Drama Showcase</span>
+					</div>
+					<div class="day-cell">
+						<span class="day-number">28</span>
+						<span class="event-pill alt">CU Retreat</span>
+					</div>
+				</div>
+			</div>
+
+			<aside class="calendar-side">
+				<div class="side-card">
+					<h3>Today, Feb 10</h3>
+					<div class="agenda-item">
+						<div class="agenda-time">6:00 PM</div>
+						<div class="agenda-meta">
+							<h4>Freshers' Night '26</h4>
+							<span>Main Hall • Social</span>
+						</div>
+					</div>
+					<div class="agenda-item">
+						<div class="agenda-time">7:30 PM</div>
+						<div class="agenda-meta">
+							<h4>Faculty Mixer</h4>
+							<span>Admin Courtyard • Networking</span>
+						</div>
+					</div>
+					<div class="agenda-item">
+						<div class="agenda-time">9:00 PM</div>
+						<div class="agenda-meta">
+							<h4>Late Night Study</h4>
+							<span>Library Annex • Academic</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="side-card">
+					<h3>Event Legend</h3>
+					<div class="legend">
+						<div class="legend-item">
+							<span class="legend-dot"></span>
+							<span>Campus Events</span>
+						</div>
+						<div class="legend-item">
+							<span class="legend-dot alt"></span>
+							<span>Sports & Wellness</span>
+						</div>
+					</div>
+				</div>
+			</aside>
+		</section>
+	</main>
+
+	<div class="floating-chat">
+		<div class="chat-bubbles">
+			<img src="https://ui-avatars.com/api/?name=John+D&background=random" class="chat-avatar" alt="Chat avatar John">
+			<img src="https://ui-avatars.com/api/?name=Sarah+K&background=random" class="chat-avatar" alt="Chat avatar Sarah">
+		</div>
+
+		<button class="btn-chat">
+			<i class="fa-regular fa-comments"></i>
+		</button>
+	</div>
+
+	<footer class="spu-footer">
+		<div class="footer-content">
+			<div class="footer-col">
+				<div class="footer-logo">
+					<img src="img/spu_logo.png" alt="SPU Logo">
+					<span>EventHub</span>
+				</div>
+				<p class="footer-tagline">The central hub for all St. Paul's University workshops, sports, and club activities.</p>
+				<div class="footer-socials">
+					<a href="https://www.facebook.com/spukenya" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+					<a href="https://x.com/SPUKenya" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+					<a href="https://www.linkedin.com/school/st-pauls-university/posts/?feedView=all" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+					<a href="https://www.whatsapp.com/channel/0029VaIeQbeHrDZYYl5IIe0U" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+					<a href="https://www.tiktok.com/@spukenya" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+					<a href="https://www.instagram.com/spukenya" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+					<a href="https://www.youtube.com/@spukenya7300" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+				</div>
+			</div>
+
+			<div class="footer-col">
+				<h4>Explore</h4>
+				<ul>
+					<li><a href="#">Popular Events</a></li>
+					<li><a href="#">Academic Calendar</a></li>
+					<li><a href="#">Clubs & Societies</a></li>
+					<li><a href="#">Campus News</a></li>
+				</ul>
+			</div>
+
+			<div class="footer-col">
+				<h4>Student Resources</h4>
+				<ul>
+					<li><a href="https://students.spu.ac.ke" target="_blank">Student Portal</a></li>
+					<li><a href="https://elearning.spu.ac.ke/" target="_blank">Virtual Campus (E-Learning)</a></li>
+					<li><a href="https://library.spu.ac.ke/" target="_blank">University Library</a></li>
+					<li><a href="https://www.spu.ac.ke/" target="_blank">University website</a></li>
+				</ul>
+			</div>
+
+			<div class="footer-col">
+				<h4>Contact Us</h4>
+				<ul class="contact-list">
+					<li><i class="fa-solid fa-location-dot"></i> P.O. Box Private Bag, Limuru, 00217</li>
+					<li><i class="fa-solid fa-phone"></i> +254 20 202 0505</li>
+					<li><i class="fa-solid fa-envelope"></i> info@spu.ac.ke</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<p>&copy; 2026 St. Paul's University Event Hub. All Rights Reserved.</p>
+			<p>Designed by Isack Mwangasu</p>
+		</div>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+</html>
