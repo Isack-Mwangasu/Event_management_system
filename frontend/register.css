@@ -1,0 +1,456 @@
+/* =============================================
+   register.css — Register Page Styles
+   ============================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --maroon: #800000;
+    --maroon-dark: #5a0000;
+    --beige: #f6f0be;
+    --bg: #f8f4f4;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    min-height: 100vh;
+    display: flex;
+}
+
+/* ── Left Panel ── */
+.auth-left {
+    width: 40%;
+    background: var(--maroon);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+    overflow: hidden;
+}
+
+.auth-left::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 60px solid rgba(255, 255, 255, 0.05);
+    top: -100px;
+    right: -100px;
+}
+
+.auth-left::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 50px solid rgba(255, 255, 255, 0.05);
+    bottom: -80px;
+    left: -80px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+}
+
+.brand img {
+    height: 48px;
+}
+
+.brand-text .uni {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    display: block;
+}
+
+.brand-text .hub {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--beige);
+    font-weight: 700;
+}
+
+.left-content {
+    position: relative;
+    z-index: 1;
+}
+
+.left-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.left-content h1 span {
+    color: var(--beige);
+}
+
+.left-content p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.roles {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.role-preview {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.role-preview i {
+    font-size: 1.2rem;
+    color: var(--beige);
+    width: 30px;
+    text-align: center;
+}
+
+.role-preview h4 {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.role-preview p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
+
+/* ── Right Panel ── */
+.auth-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 60px;
+    overflow-y: auto;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 460px;
+}
+
+.auth-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--maroon);
+    margin-bottom: 6px;
+}
+
+.auth-box .subtitle {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+.auth-box .subtitle a {
+    color: var(--maroon);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-box .subtitle a:hover {
+    text-decoration: underline;
+}
+
+/* ── Alert ── */
+.alert {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert.error {
+    background: #fff0f0;
+    color: #c0392b;
+    border: 1px solid #f5c6cb;
+    display: flex;
+}
+
+.alert.success {
+    background: #f0fff4;
+    color: #27ae60;
+    border: 1px solid #c3e6cb;
+    display: flex;
+}
+
+/* ── Role Selector ── */
+.role-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.role-card {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+}
+
+.role-card:hover {
+    border-color: var(--maroon);
+    background: #fff5f5;
+}
+
+.role-card.selected {
+    border-color: var(--maroon);
+    background: #fff5f5;
+}
+
+.role-card i {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+    color: #aaa;
+    display: block;
+}
+
+.role-card.selected i {
+    color: var(--maroon);
+}
+
+.role-card span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.role-card.selected span {
+    color: var(--maroon);
+}
+
+/* ── Form ── */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap i.icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #bbb;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.input-wrap input,
+.input-wrap select {
+    width: 100%;
+    padding: 13px 16px 13px 44px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+}
+
+.input-wrap input:focus,
+.input-wrap select:focus {
+    border-color: var(--maroon);
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.08);
+}
+
+.toggle-pw {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #bbb;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.toggle-pw:hover {
+    color: var(--maroon);
+}
+
+/* ── Password Strength ── */
+.pw-strength {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.pw-bar {
+    height: 4px;
+    flex: 1;
+    border-radius: 4px;
+    background: #e0e0e0;
+    transition: background 0.3s;
+}
+
+.pw-bar.weak {
+    background: #e74c3c;
+}
+
+.pw-bar.fair {
+    background: #f39c12;
+}
+
+.pw-bar.strong {
+    background: #27ae60;
+}
+
+/* ── Terms ── */
+.terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.terms input[type="checkbox"] {
+    margin-top: 2px;
+    accent-color: var(--maroon);
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+
+.terms a {
+    color: var(--maroon);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ── Submit Button ── */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--maroon);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-submit:hover {
+    background: var(--maroon-dark);
+    transform: translateY(-1px);
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.signin-link {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 20px;
+}
+
+.signin-link a {
+    color: var(--maroon);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.signin-link a:hover {
+    text-decoration: underline;
+}
+
+/* ── Spinner ── */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .auth-left {
+        display: none;
+    }
+
+    .auth-right {
+        padding: 30px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

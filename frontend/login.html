@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SPU EventHub</title>
+    <link rel="icon" href="Img/spu_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="auth-left">
+        <a href="index.html" class="brand">
+            <img src="Img/spu_logo.png" alt="SPU Logo">
+            <div class="brand-text">
+                <span class="uni">St Paul's University</span>
+                <span class="hub">EventHub</span>
+            </div>
+        </a>
+        <div class="left-content">
+            <h1>Welcome <span>back</span> to campus life.</h1>
+            <p>Your single source of truth for every workshop, tournament, and club meetup at St Paul's.</p>
+        </div>
+        <div class="features">
+            <div class="feature"><i class="fa-solid fa-calendar-check"></i><span>Browse all upcoming campus
+                    events</span></div>
+            <div class="feature"><i class="fa-solid fa-bell"></i><span>Get notified before events you love</span></div>
+            <div class="feature"><i class="fa-solid fa-users"></i><span>Connect with clubs and organizers</span></div>
+        </div>
+    </div>
+
+    <div class="auth-right">
+        <div class="auth-box">
+            <h2>Sign In</h2>
+            <p class="subtitle">New here? <a href="register.html">Create an account →</a></p>
+
+            <div class="alert" id="alertBox">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span id="alertMsg">Something went wrong.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">University Email</label>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" placeholder="yourname@spu.ac.ke" autocomplete="email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="Enter your password"
+                        autocomplete="current-password">
+                    <button class="toggle-pw" type="button" onclick="togglePassword('password', this)">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button class="btn-submit" id="loginBtn" onclick="handleLogin()">
+                <span>Sign In</span>
+                <div class="spinner" id="spinner"></div>
+            </button>
+
+            <div class="divider">or</div>
+            <div class="signup-link">Don't have an account? <a href="register.html">Register now</a></div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>

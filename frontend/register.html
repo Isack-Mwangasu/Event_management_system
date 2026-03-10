@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | SPU EventHub</title>
+    <link rel="icon" href="Img/spu_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+    <div class="auth-left">
+        <a href="index.html" class="brand">
+            <img src="Img/spu_logo.png" alt="SPU Logo">
+            <div class="brand-text">
+                <span class="uni">St Paul's University</span>
+                <span class="hub">EventHub</span>
+            </div>
+        </a>
+        <div class="left-content">
+            <h1>Join the <span>community.</span></h1>
+            <p>Create your account and never miss a moment of campus life at St Paul's University.</p>
+        </div>
+        <div class="roles">
+            <div class="role-preview"><i class="fa-solid fa-user-graduate"></i>
+                <div>
+                    <h4>Student</h4>
+                    <p>Browse, RSVP & attend events</p>
+                </div>
+            </div>
+            <div class="role-preview"><i class="fa-solid fa-megaphone"></i>
+                <div>
+                    <h4>Organizer</h4>
+                    <p>Create & manage your events</p>
+                </div>
+            </div>
+            <div class="role-preview"><i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <h4>Admin</h4>
+                    <p>Full platform oversight</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-right">
+        <div class="auth-box">
+            <h2>Create Account</h2>
+            <p class="subtitle">Already have one? <a href="login.html">Sign in →</a></p>
+
+            <div class="alert" id="alertBox">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span id="alertMsg"></span>
+            </div>
+
+            <div class="role-selector" id="roleSelector">
+                <div class="role-card selected" data-role="student" onclick="selectRole('student', this)">
+                    <i class="fa-solid fa-user-graduate"></i><span>Student</span>
+                </div>
+                <div class="role-card" data-role="organizer" onclick="selectRole('organizer', this)">
+                    <i class="fa-solid fa-megaphone"></i><span>Organizer</span>
+                </div>
+                <div class="role-card" data-role="admin" onclick="selectRole('admin', this)">
+                    <i class="fa-solid fa-shield-halved"></i><span>Admin</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-user icon"></i>
+                        <input type="text" id="name" placeholder="Isack Mwangasu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-id-card icon"></i>
+                        <input type="text" id="studentId" placeholder="SPU/CS/2024/001">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>University Email</label>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-envelope icon"></i>
+                    <input type="email" id="email" placeholder="yourname@spu.ac.ke">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-building-columns icon"></i>
+                    <select id="department">
+                        <option value="">Select your department</option>
+                        <option>Computer Science & IT</option>
+                        <option>Nursing & Health Sciences</option>
+                        <option>Mass Communication</option>
+                        <option>Business & Economics</option>
+                        <option>Theology & Religion</option>
+                        <option>Education</option>
+                        <option>Law</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input type="password" id="password" placeholder="Min. 6 characters"
+                        oninput="checkStrength(this.value)">
+                    <button class="toggle-pw" type="button" onclick="togglePw()">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+                <div class="pw-strength">
+                    <div class="pw-bar" id="bar1"></div>
+                    <div class="pw-bar" id="bar2"></div>
+                    <div class="pw-bar" id="bar3"></div>
+                    <div class="pw-bar" id="bar4"></div>
+                </div>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="terms">
+                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> of
+                    SPU EventHub</label>
+            </div>
+
+            <button class="btn-submit" id="registerBtn" onclick="handleRegister()">
+                <span>Create Account</span>
+                <div class="spinner" id="spinner"></div>
+            </button>
+
+            <div class="signin-link">Already have an account? <a href="login.html">Sign in</a></div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="register.js"></script>
+</body>
+
+</html>
